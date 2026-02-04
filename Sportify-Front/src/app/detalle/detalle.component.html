@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="club-banner" [ngStyle]="{'background-image': 'url(' + 'http://localhost:8000/'+infoDetalle.pImagen + ')'}">
+    <div class="banner-overlay">
+      <h2 class="banner-subtitle">Reserva tu pista de {{ infoDetalle.dNombre }} en {{ infoDetalle.cNombre }}</h2>
+      <h1 class="banner-title">{{ infoDetalle.pNombre }}</h1>
+      <p class="banner-address">{{ infoDetalle.dDireccion }}</p>
+    </div>
+</div>
+<app-calendario *ngIf="infoDetalle?.pId" [pistaId]="infoDetalle.pId" (onSeleccionFranja)="abrirReserva($event)"></app-calendario>
+
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h2>Confirmar Reserva</h2>
+      <button class="close-btn" (click)="closeModal()">X</button>
+    </div>
+    
+    <p><strong>Fecha:</strong> {{ reservaSeleccionada?.fecha | date: 'fullDate' }}</p>
+    <p><strong>Hora:</strong> {{ reservaSeleccionada?.hora }}</p>
+    <p><strong>Pista:</strong> {{ infoDetalle.pNombre }}</p>
+
+    <div class="payment-options">
+      <img class="imgPago"
+        *ngFor="let metodo of metodosPago" 
+        [src]="'assets/' + metodo + '.jpg'"
+        [class.selected]="metodo === metodoSeleccionado"
+        (click)="seleccionarMetodo(metodo)"
+      />
+    </div>
+
+    <p><strong>Precio:</strong> {{ infoDetalle.pPrecio }}€</p>
+
+    <button 
+      class="pagar-btn" 
+      [disabled]="!metodoSeleccionado"
+      (click)="pagar()">
+      Pagar
+    </button>
+  </div>
+</div>
+<app-footer></app-footer>

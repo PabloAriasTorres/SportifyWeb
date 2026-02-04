@@ -1,0 +1,39 @@
+<app-cms-header></app-cms-header>
+<div class="reservas-container">
+  <h1 class="title">Listado de Reservas</h1>
+
+  <table class="reservas-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Id Pista</th>
+        <th>Id Usuario</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Método Pago</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.id }}</td>
+        <td>{{ reserva.pista_id }}</td>
+        <td>{{ reserva.usuario_id }}</td>
+        <td>{{ reserva.fecha | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ reserva.hora }}</td>
+        <td>{{ reserva.metodo }}</td>
+        <td>{{ reserva.precio | currency:'EUR' }}</td>
+        <td>
+          <button class="delete-button" (click)="borrarReserva(reserva.id)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="!hasMore">Siguiente</button>
+  </div>
+</div>

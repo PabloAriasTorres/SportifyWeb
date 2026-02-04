@@ -1,0 +1,12 @@
+header { 
+    border-bottom: 2px solid #ddd; padding: 1rem;
+}
+.logo { 
+    width: 120px; height: 60px; 
+}
+.hover-dropdown:hover .dropdown-menu { 
+    display: block; margin-top: 0;
+}
+.dropdown-menu .dropdown-item { 
+    cursor: pointer;
+}

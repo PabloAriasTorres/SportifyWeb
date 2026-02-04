@@ -1,0 +1,52 @@
+<div class="calendario-container">
+  <!-- Barra superior con el mes y las flechas -->
+  <div class="calendario-header">
+    <button (click)="cambiarMes('anterior')" [disabled]="mesActualIndex === 0">
+      &larr;
+    </button>
+    <h2 class="nombre-mes">{{ mesesDisponibles[mesActualIndex] | date: 'MMMM yyyy' }}</h2>
+    <button (click)="cambiarMes('siguiente')" [disabled]="mesActualIndex === mesesDisponibles.length - 1">
+      &rarr;
+    </button>
+  </div>
+
+  <!-- Parte izquierda (días del mes) -->
+  <div class="calendario-principal">
+    <div class="calendario-dias">
+      <button
+        *ngFor="let dia of diasFiltrados"
+        (click)="toggleDiaSeleccionado(dia)"
+        [class.seleccionado]="dia === diaSeleccionado"
+      >
+        {{ dia.fecha | date: 'dd' }}
+      </button>
+    </div>
+
+    <div class="calendario-horarios" *ngIf="diaSeleccionado">
+      <div
+        *ngFor="let franja of diaSeleccionado.franjas"
+        class="hora-card"
+        [class.reservada]="franja.reservada"
+        [class.seleccionada]="franjaSeleccionada === franja && !franja.reservada"
+        (click)="seleccionarFranja(diaSeleccionado.fecha, franja)"
+      >
+        {{ franja.hora }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Parte derecha (detalles) -->
+  <div class="calendario-detalles">
+    <h3>Detalles de reserva</h3>
+    <div *ngIf="franjaSeleccionada && diaSeleccionado">
+      <p><strong>Fecha:</strong> {{ diaSeleccionado.fecha | date: 'fullDate' }}</p>
+      <p><strong>Hora:</strong> {{ franjaSeleccionada.hora }}</p>
+    </div>
+    <div *ngIf="!franjaSeleccionada">
+      <p>Selecciona una franja disponible.</p>
+    </div>
+    <button *ngIf="franjaSeleccionada" (click)="reservarSeleccionada()">
+      Reservar
+    </button>
+  </div>
+</div>

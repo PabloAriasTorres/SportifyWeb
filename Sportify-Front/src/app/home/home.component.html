@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportify</title>
+</head>
+<body>
+
+<app-header 
+  (buscar)="buscarClub($event)"
+  (filtrarLocalidad)="filtrarPorLocalidad($event)"
+  (filtrarDeporte)="filtrarPorDeporte($event)"
+  (cargarPistas)="allClubs()">
+</app-header>
+
+  
+<main class="container mt-4">
+  <div class="pistas-grid">
+    <div class="pista-card" *ngFor="let club of clubs">
+      <div class="image-wrapper position-relative">
+        <a [routerLink]="['/pista', club.pId]">
+          <img [src]="'http://localhost:8000/'+club.pImagen" alt="Pista" class="img-fluid rounded mb-2">
+          <div class="club-name"> {{ club.cNombre }}</div>
+        </a>
+      </div>
+      <p><i class="bi bi-geo-alt"></i><strong>Dirección:</strong> {{ club.dDireccion }}</p>
+      <p><i class="bi bi-trophy"></i><strong>Deporte:</strong> {{ club.dNombre }}</p>
+    </div>
+  </div>
+  <p *ngIf="emptyResponse" class="alert alert-warning">
+    No se encontraron clubs con ese nombre.
+  </p>
+
+</main>
+
+<app-footer></app-footer>
+
+</body>
+</html>

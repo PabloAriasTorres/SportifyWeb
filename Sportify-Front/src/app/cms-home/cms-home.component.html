@@ -1,0 +1,23 @@
+<app-cms-header></app-cms-header>
+<div class="dashboard-container">
+  <h1>Estadísticas de Reservas</h1>
+  <div class="stats">
+    <div class="stat">
+      <h2>Total de Reservas</h2>
+      <p>{{ totales?.totalReservas }}</p>
+    </div>
+    <div class="stat">
+      <h2>Total Dinero Generado</h2>
+      <p>{{ totales?.totalDinero | currency: 'EUR' }}</p>
+    </div>
+  </div>
+
+  <div class="method-breakdown">
+    <h2>Reservas por Método de Pago</h2>
+    <div class="method" *ngFor="let metodo of desglosePorMetodo">
+      <h3>{{ metodo.metodo }}</h3>
+      <p>Reservas: {{ metodo.totalReservasPorMetodo }}</p>
+      <p>Total Dinero: {{ metodo.totalDineroPorMetodo | currency: 'EUR' }}</p>
+    </div>
+  </div>
+</div>

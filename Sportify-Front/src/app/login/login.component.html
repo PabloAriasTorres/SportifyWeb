@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+<div class="login-register-container">
+    <!-- LOGIN -->
+    <div class="form-section">
+      <h2>Login</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="errorInfo" *ngIf="errorLogin" style="color: red;">
+          {{errorInfo}}
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <div class="error" *ngIf="loginForm.get('correo')?.touched && loginForm.get('correo')?.invalid">
+            <div *ngIf="loginForm.get('correo')?.errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="loginForm.get('correo')?.errors?.['email']">Correo inválido.</div>
+          </div>
+          <input type="email" formControlName="correo" />
+        </div>
+  
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="error" *ngIf="loginForm.get('contrasena')?.touched && loginForm.get('contrasena')?.invalid">
+            <div *ngIf="loginForm.get('contrasena')?.errors?.['required']">La contraseña es obligatoria.</div>
+            <div *ngIf="loginForm.get('contrasena')?.errors?.['minlength']">Mínimo 5 caracteres.</div>
+          </div>
+          <input type="password" formControlName="contrasena" />
+        </div>
+  
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  
+    <!-- REGISTRO -->
+    <div class="form-section">
+      <h2>Registro</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="errorInfo" *ngIf="errorRegister" style="color: red;">
+          {{errorInfo}}
+        </div>
+        <div class="form-group">
+          <label>Nombre</label>
+          <div class="error" *ngIf="registerForm.get('nombre')?.touched && registerForm.get('nombre')?.invalid">
+            <div *ngIf="registerForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</div>
+            <div *ngIf="registerForm.get('nombre')?.errors?.['minlength']">Mínimo 3 letras.</div>
+          </div>
+          <input type="text" formControlName="nombre" />
+        </div>
+  
+        <div class="form-group">
+          <label>Teléfono</label>
+          <div class="error" *ngIf="registerForm.get('telefono')?.touched && registerForm.get('telefono')?.invalid">
+            <div *ngIf="registerForm.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</div>
+            <div *ngIf="registerForm.get('telefono')?.errors?.['pattern']">Debe tener 9 dígitos numéricos.</div>
+          </div>
+          <input type="text" formControlName="telefono" />
+        </div>
+  
+        <div class="form-group">
+          <label>Correo</label>
+          <div class="error" *ngIf="registerForm.get('correo')?.touched && registerForm.get('correo')?.invalid">
+            <div *ngIf="registerForm.get('correo')?.errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="registerForm.get('correo')?.errors?.['email']">Correo inválido.</div>
+          </div>
+          <input type="email" formControlName="correo" />
+        </div>
+  
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="error" *ngIf="registerForm.get('contrasena')?.touched && registerForm.get('contrasena')?.invalid">
+            <div *ngIf="registerForm.get('contrasena')?.errors?.['required']">La contraseña es obligatoria.</div>
+            <div *ngIf="registerForm.get('contrasena')?.errors?.['minlength']">Mínimo 5 caracteres.</div>
+          </div>
+          <input type="password" formControlName="contrasena" />
+        </div>
+  
+        <div class="form-group">
+          <label>Confirmar Contraseña</label>
+          <div class="error" *ngIf="registerForm.hasError('contrasenasNoCoinciden') && registerForm.get('confirmarContrasena')?.touched">
+            Las contraseñas no coinciden.
+          </div>
+          <input type="password" formControlName="confirmarContrasena" />
+        </div>
+  
+        <button type="submit">Registro</button>
+      </form>
+    </div>
+  </div>
+<app-footer></app-footer>

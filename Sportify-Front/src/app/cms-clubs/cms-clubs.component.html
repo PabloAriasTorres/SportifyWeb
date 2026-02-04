@@ -1,0 +1,37 @@
+<app-cms-header></app-cms-header>
+<div class="clubs-container">
+  <h1 class="title">Listado de Clubs</h1>
+  <button class="create-button" (click)="crearClub()">Crear Nuevo Club</button>
+
+  <table class="clubs-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Localidad</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let club of clubs">
+        <td>{{ club.id }}</td>
+        <td>{{ club.nombre }}</td>
+        <td>{{ club.direccion }}</td>
+        <td>{{ club.localidad }}</td>
+        <td>{{ club.telefono }}</td>
+        <td>
+          <button class="edit-button" (click)="editarClub(club.id)">Editar</button>
+          <button class="delete-button" (click)="borrarClub(club.id)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="!hasMore">Siguiente</button>
+  </div>
+</div>

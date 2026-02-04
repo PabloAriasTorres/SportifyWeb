@@ -1,0 +1,54 @@
+<header class="d-flex justify-content-between align-items-center container py-3">
+    <a [routerLink]="['/']">
+      <img src="http://localhost:8000/images/logo.png" alt="Logo" class="logo">
+    </a>
+  
+    <!-- Solo mostrar esto si está en home -->
+    <ng-container *ngIf="esHome">
+      <input type="text" class="form-control w-25" placeholder="Buscar club..." (input)="buscarClub($event)">
+  
+      <div class="d-flex gap-3 align-items-center">
+        <button class="btn btn-primary" (click)="allClubs()">Todos</button>
+  
+        <!-- Comunidad -->
+        <div class="dropdown hover-dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button">
+            Por Comunidad
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="filtrarPorLocalidad('Madrid')">Madrid</a></li>
+            <li><a class="dropdown-item" (click)="filtrarPorLocalidad('Barcelona')">Barcelona</a></li>
+            <li><a class="dropdown-item" (click)="filtrarPorLocalidad('Comunidad Valenciana')">Comunidad Valenciana</a></li>
+          </ul>
+        </div>
+  
+        <!-- Deporte -->
+        <div class="dropdown hover-dropdown">
+          <button class="btn btn-outline-primary dropdown-toggle" type="button">
+            Por Deporte
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" (click)="filtrarPorDeporte('Baloncesto')">Baloncesto</a></li>
+            <li><a class="dropdown-item" (click)="filtrarPorDeporte('Fútbol')">Fútbol</a></li>
+            <li><a class="dropdown-item" (click)="filtrarPorDeporte('Pádel')">Pádel</a></li>
+            <li><a class="dropdown-item" (click)="filtrarPorDeporte('Tenis')">Tenis</a></li>
+          </ul>
+        </div>
+      </div>
+    </ng-container>
+  
+    <ng-container *ngIf="!logeado; else mostrarLogout">
+      <button class="btn btn-primary" (click)="login()">Inicia sesión / Registro</button>
+    </ng-container>
+    
+    <ng-template #mostrarLogout>
+      <div class="d-flex justify-content-end gap-3">
+        <button class="btn btn-primary" [routerLink]="['/perfil', idUsuario]">
+          <i class="bi bi-person-circle me-2"></i>{{nombreUsuario}}
+        </button>
+        <button class="btn btn-danger" (click)="logout()">Cerrar sesión</button>
+      </div>
+    </ng-template>
+    
+</header>
+  

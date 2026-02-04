@@ -1,0 +1,41 @@
+.dashboard-container {
+  padding: 20px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  text-align: center;
+}
+
+.method-breakdown {
+  margin-top: 20px;
+}
+
+.method {
+  background: #f8f9fa;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.method h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.stat p{
+    color: green;
+    font-weight: bold;
+    font-size: larger;
+}

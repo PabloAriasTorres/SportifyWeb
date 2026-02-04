@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<div class="perfil-container">
+
+  <div class="perfil-datos">
+    <h2>Datos del Perfil</h2>
+    <p><strong>Nombre:</strong> {{ usuario.nombre }}</p>
+    <p><strong>Email:</strong> {{ usuario.email }}</p>
+    <p><strong>Teléfono:</strong> {{ usuario.telefono }}</p>
+  </div>
+
+  <div class="perfil-reservas">
+    <h2>Reservas</h2>
+    <div *ngIf="reservas.length === 0; else listaReservas">
+      <div class="reserva-vacia"></div>
+    </div>
+    <ng-template #listaReservas>
+      <ul class="reservas-lista">
+        <li *ngFor="let reserva of reservas" class="reserva-item">
+          <p><strong>Fecha:</strong> {{ reserva.fecha | date: 'yyyy-MM-dd' }}</p>
+          <p><strong>Hora:</strong> {{ reserva.hora }}</p>
+          <p><strong>Pista:</strong> {{ reserva.nombre }}</p>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+</div>
+
+<app-footer></app-footer>

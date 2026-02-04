@@ -1,0 +1,51 @@
+.perfil-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.perfil-datos{
+  max-height: 300px;
+}
+
+.perfil-datos, .perfil-reservas {
+  flex: 1;
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-datos h2, .perfil-reservas h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.perfil-datos p, .perfil-reservas p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.reservas-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.reserva-item {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.reserva-vacia {
+  height: 100px;
+  background: #eaeaea;
+  border: 1px dashed #ddd;
+  border-radius: 5px;
+}

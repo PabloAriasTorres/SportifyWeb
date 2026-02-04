@@ -1,0 +1,20 @@
+<header class="cms-header">
+  
+  <div class="header-logo">
+    <a [routerLink]="['/cms/home']">
+        <img src="http://localhost:8000/images/logo.png" alt="Logo">
+    </a>
+  </div>
+
+  <nav class="header-nav">
+    <a [routerLink]="['/cms/pistas']" class="nav-link">Pistas</a>
+    <a [routerLink]="['/cms/clubs']" class="nav-link">Clubs</a>
+    <a [routerLink]="['/cms/usuarios']" class="nav-link">Usuarios</a>
+    <a [routerLink]="['/cms/reservas']" class="nav-link">Reservas</a>
+  </nav>
+
+  <div class="header-admin">
+    <span>Hola admin</span>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </div>
+</header>

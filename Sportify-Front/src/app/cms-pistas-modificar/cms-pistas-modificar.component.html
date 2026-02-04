@@ -1,0 +1,53 @@
+<app-cms-header></app-cms-header>
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Editar Pista' : 'Crear Nueva Pista' }}</h2>
+  <form [formGroup]="pistaForm" (ngSubmit)="submitForm()" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" formControlName="nombre" placeholder="Nombre de la pista" />
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio (€)</label>
+      <input type="text" id="precio" formControlName="precio" placeholder="Precio" />
+    </div>
+
+    <div class="form-group">
+      <label for="longitud">Longitud (m)</label>
+      <input type="text" id="longitud" formControlName="longitud" placeholder="Longitud" />
+    </div>
+
+    <div class="form-group">
+      <label for="ancho">Ancho (m)</label>
+      <input type="text" id="ancho" formControlName="ancho" placeholder="Ancho" />
+    </div>
+
+    <div class="form-group">
+      <label for="deporte">Deporte</label>
+      <select id="deporte" formControlName="deporte_id">
+        <option value="" disabled selected>Seleccione un deporte</option>
+        <option *ngFor="let deporte of deportes" [value]="deporte.id">{{ deporte.nombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="club">Club</label>
+      <select id="club" formControlName="club_id">
+        <option value="" disabled selected>Seleccione un club</option>
+        <option *ngFor="let club of clubs" [value]="club.cId">{{ club.cNombre }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Imagen</label>
+      <div *ngIf="imagenError" class="error-message">
+        La imagen es obligatoria.
+      </div>
+      <input type="file" id="imagen" (change)="onFileSelected($event)" />
+    </div>
+
+    <button type="submit" [disabled]="pistaForm.invalid">
+      {{ isEditMode ? 'Actualizar Pista' : 'Crear Pista' }}
+    </button>
+  </form>
+</div>

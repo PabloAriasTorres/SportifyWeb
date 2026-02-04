@@ -1,0 +1,35 @@
+<app-cms-header></app-cms-header>
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Editar Club' : 'Crear Nuevo Club' }}</h2>
+  <form [formGroup]="clubForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" formControlName="nombre" placeholder="Nombre del club" />
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" formControlName="direccion" placeholder="Dirección del club" />
+    </div>
+
+    <div class="form-group">
+    <label for="localidad">Localidad</label>
+    <select id="localidad" formControlName="localidad">
+        <option value="" disabled selected>Seleccione una localidad</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Comunidad Valenciana">Comunidad Valenciana</option>
+        <option value="Barcelona">Barcelona</option>
+    </select>
+    </div>
+
+
+    <div class="form-group">
+      <label for="telefono">Teléfono</label>
+      <input type="text" id="telefono" formControlName="telefono" placeholder="Teléfono" />
+    </div>
+
+    <button type="submit" [disabled]="clubForm.invalid">
+      {{ isEditMode ? 'Actualizar Club' : 'Crear Club' }}
+    </button>
+  </form>
+</div>

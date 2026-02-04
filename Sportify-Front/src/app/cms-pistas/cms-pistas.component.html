@@ -1,0 +1,43 @@
+<app-cms-header></app-cms-header>
+<div class="pistas-container">
+  <h1 class="title">Listado de Pistas</h1>
+  <button class="create-button" (click)="crearPista()">Crear Nueva Pista</button>
+
+  <table class="pistas-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Id Deporte</th>
+        <th>Id Club</th>
+        <th>Precio</th>
+        <th>Dimensiones</th>
+        <th>Imagen</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pista of pistas">
+        <td>{{ pista.id }}</td>
+        <td>{{ pista.nombre }}</td>
+        <td>{{ pista.deporte_id }}</td>
+        <td>{{ pista.club_id }}</td>
+        <td>{{ pista.precio | currency:'EUR' }}</td>
+        <td>{{ pista.longitud }} x {{ pista.ancho }} m</td>
+        <td>
+          <img [src]="'http://localhost:8000/'+pista.imagen" alt="Imagen de la pista" class="pista-img">
+        </td>
+        <td>
+          <button class="edit-button" (click)="editarPista(pista.id)">Editar</button>
+          <button class="delete-button" (click)="borrarPista(pista.id)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span>Página {{ currentPage }}</span>
+    <button (click)="nextPage()" [disabled]="!hasMore">Siguiente</button>
+  </div>
+</div>
